@@ -48,11 +48,14 @@ const btnAll = document.querySelector('.all_btn'),
       btnPhotography = document.querySelector('.photography_btn'),
       btnLogoDesign = document.querySelector('.logo_design_btn'),
       btnWebDesign = document.querySelector('.web_design_btn');
+      allButtons = document.querySelectorAll('.switch_btn');
 // array of photos
 const galleryPhotos = document.querySelectorAll('.gallery_items');
 
 const showAll =() =>{
     galleryPhotos.forEach((el) => { el.style.display ='block'; el.classList.add('showings')})
+    cleanActiveButtons();
+    btnAll.classList.add('active_switcher');
 }
 
 const showPhotography = ()=>{
@@ -64,6 +67,12 @@ const showPhotography = ()=>{
         photo[i].classList.add('showings')
         photo[i].style.display = 'block';
     }
+
+    cleanActiveButtons();
+
+    btnPhotography.classList.add('active_switcher');
+
+
 }
 
 const showLogo = ()=>{
@@ -75,6 +84,11 @@ const showLogo = ()=>{
         photo[i].style.display = 'block';
         photo[i].classList.add('showings')
     }
+
+    cleanActiveButtons();
+
+    btnLogoDesign.classList.add('active_switcher');
+
 }
 
 const showWeb = ()=>{
@@ -86,6 +100,11 @@ const showWeb = ()=>{
         photo[i].style.display = 'block';
         photo[i].classList.add('showings');
     }
+
+    cleanActiveButtons();
+
+    btnWebDesign.classList.add('active_switcher');
+
 }
 
 const cleanAll = ()=>{
@@ -93,6 +112,12 @@ const cleanAll = ()=>{
         galleryPhotos[i].style.display = 'none';
     }
 }
+
+const cleanActiveButtons = ()=>{
+    allButtons.forEach(el =>el.className = el.className.replace('active_switcher', ''));
+}
+
+
 
 btnAll.addEventListener('click',showAll)
 btnPhotography.addEventListener('click',showPhotography)
@@ -183,3 +208,33 @@ modalRightRow.addEventListener('click',nextImage);
 modalLeftRow.addEventListener('click',prevImage);
 
 
+//burger
+
+const burger = document.querySelector('#burger'),
+      popupContainer = document.querySelector('#popup'),
+      menuPopup = document.querySelector('#menu').cloneNode(1);
+
+let popupLinks;
+
+
+const showMenu =(e) =>{
+    e.preventDefault();
+    popupContainer.classList.toggle('open_popup');
+    renderPopup();
+
+    popupLinks = document.querySelector('.popup .menu');
+    popupContainer.classList.replace('close_popup','open_popup');
+    closePopup();
+
+    burger.classList.toggle('toggle');
+}
+
+const renderPopup = () => {
+    popupContainer.appendChild(menuPopup);
+    
+}
+
+const closePopup = ()=>{
+    popupLinks.addEventListener('click',() => popupContainer.classList.replace('open_popup','close_popup'));
+}
+burger.addEventListener('click',showMenu);
