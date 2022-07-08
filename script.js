@@ -226,7 +226,7 @@ const showMenu =(e) =>{
     popupContainer.classList.replace('close_popup','open_popup');
     closePopup();
 
-    burger.classList.toggle('toggle');
+//     burger.classList.toggle('toggle');
 }
 
 const renderPopup = () => {
