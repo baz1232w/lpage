@@ -79,6 +79,8 @@ p{
 
     transition: color .1s linear;
 
+    cursor:pointer;
+    
     z-index: 998;
 }
 
